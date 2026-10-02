@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "JAVA_HOME: $JAVA_HOME"
           java -version
-          JAVA_VER=$(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}' | cut -d'.' -f1)
+          JAVA_VER=$(java -version 2>&1 | head -n 1 | awk -F '"' '{print $2}' | cut -d. -f1)
           echo "Detected Java Major Version: $JAVA_VER"
           if [ -z "$JAVA_VER" ]; then
             echo "Error: Unable to detect Java version."
