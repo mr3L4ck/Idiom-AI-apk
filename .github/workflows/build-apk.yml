@@ -110,7 +110,20 @@ jobs:
             exit 1
           fi
 
+          cat << 'EOF' > "$TEMP_DIR/release_notes.md"
+### Idiom AI Debug APK
+- This is an automatically generated debug APK.
+- The APK was built by GitHub Actions.
+- GitHub Actions run number: #${{ github.run_number }}
+- GitHub Actions run attempt: #${{ github.run_attempt }}
+- Source commit SHA: ${{ github.sha }}
+- APK is intended for testing.
+- APK is not a Play Store production release.
+- APK is signed only with a temporary debug keystore.
+EOF
+
           echo "asset_path=$TEMP_DIR/app-debug.apk" >> "$GITHUB_OUTPUT"
+          echo "notes_path=$TEMP_DIR/release_notes.md" >> "$GITHUB_OUTPUT"
           echo "Prepared release asset: $TEMP_DIR/app-debug.apk"
 
       - name: Publish APK to GitHub Releases
@@ -123,6 +136,7 @@ jobs:
           RELEASE_TAG="debug-apk-build-${{ github.run_number }}-${{ github.run_attempt }}"
           RELEASE_TITLE="Debug APK Build #${{ github.run_number }}"
           ASSET_PATH="${{ steps.prepare_asset.outputs.asset_path }}"
+          NOTES_PATH="${{ steps.prepare_asset.outputs.notes_path }}"
 
           if [ ! -f "$ASSET_PATH" ] || [ ! -s "$ASSET_PATH" ]; then
             echo "Error: Release asset $ASSET_PATH does not exist or is empty."
@@ -139,14 +153,8 @@ jobs:
           gh release create "$RELEASE_TAG" "$ASSET_PATH" \
             --title "$RELEASE_TITLE" \
             --target "${{ github.sha }}" \
-            --latest \
-            --notes "### Idiom AI Debug Build
-- **Type**: Automatically generated debug APK
-- **Builder**: GitHub Actions
-- **Run Number**: #${{ github.run_number }}
-- **Run Attempt**: #${{ github.run_attempt }}
-- **Source Commit**: \`${{ github.sha }}\`
-- **Notice**: This APK is intended for testing and validation. It is not an official Play Store release and is signed with a temporary debug keystore."
+            --notes-file "$NOTES_PATH" \
+            --latest
 
       - name: Report APK download result
         if: always()
