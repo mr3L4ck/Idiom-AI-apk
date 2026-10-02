@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Idiom AI</string>
+    <string name="welcome_headline">Learn naturally.\nSpeak confidently.</string>
+    <string name="welcome_subtitle">Start your journey with Idiom AI. Conversational practice, structured daily units, and interactive voice tutoring.</string>
+    <string name="get_started">Get Started</string>
+    <string name="select_native_language">What is your native language?</string>
+    <string name="select_target_language">Which language do you want to learn?</string>
+    <string name="search_languages">Search languages or countries…</string>
+    <string name="continue_button">Continue</string>
+    <string name="daily_goal_title">Daily Goal</string>
+    <string name="sample_lesson_title">Today\'s Lesson</string>
+    <string name="continue_learning">Continue Learning</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_learn">Learn</string>
+    <string name="nav_ai_tutor">Idiom AI</string>
+    <string name="nav_progress">Progress</string>
+    <string name="nav_profile">Profile</string>
+</resources>

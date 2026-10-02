@@ -1,0 +1,6 @@
+{
+  "name": "Idiom AI",
+  "description": "Idiom AI - Learn naturally, speak confidently. Modern language-learning with Idiom AI tutor, verified course units, and natural voice practice.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
